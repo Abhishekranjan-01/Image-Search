@@ -29,24 +29,22 @@ export default function ImageContainer() {
     if (loadImgs || update) {
       let tempArr = [...dataFromAPI.slice(0, 9)];
       if (update == true) {
-        while (arrayOfImages.length != 0) {
-          arrayOfImages.pop();
-        }
+        // document.querySelector("#img_container div").innerHTML = "";
       }
       setArrayOfImage([...arrayOfImages, ...tempArr]);
       setDataFromAPI(dataFromAPI.slice(9, Infinity));
       setLoadImgs(false);
       setUpdate(false);
-      console.log("Image Container 1st Instance");
     }
   }, [update]);
 
   window.addEventListener("scroll", HandleScrollEvent);
 
-  return update ? (
-    <section></section>
-  ) : (
-    <main className="sm:w-11/12 pb-12 mx-auto sm:overflow-x-hidden">
+  return (
+    <main
+      id="img_container"
+      className="sm:w-11/12 pb-12 mx-auto sm:overflow-x-hidden"
+    >
       <div className="mt-[40px] columns-1 sm:columns-3 gap-[15px]">
         {arrayOfImages.map((allData, i) => (
           <div

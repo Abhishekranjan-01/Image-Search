@@ -21,7 +21,7 @@ export default function fethImages(
           "DATA_FROM_API_IMAGE_RESULTS",
           JSON.stringify(res.data.photos)
         );
-        setHoldBgUrlOrsetDataFromApi([]);
+        document.querySelector("#img_container div").innerHTML = "";
         setHoldBgUrlOrsetDataFromApi(res.data.photos);
       } else {
         setHoldBgUrlOrsetDataFromApi(

@@ -4,7 +4,8 @@ import fethImages from "../../API/fetchImages";
 import { APIdataProvider } from "../Home/Home";
 
 export default function inputContainer() {
-  const { dataFromAPI, setDataFromAPI } = useContext(APIdataProvider);
+  const { dataFromAPI, setDataFromAPI, update, setUpdate } =
+    useContext(APIdataProvider);
   const inputRef = useRef("");
 
   return (
@@ -15,6 +16,7 @@ export default function inputContainer() {
         e.preventDefault();
         localStorage.removeItem("SEARCH_IMAGE_RESULTS");
         fethImages(inputRef.current.value, setDataFromAPI, dataFromAPI);
+        setUpdate(true);
       }}
     >
       <div className="w-full flex rounded-md px-1 sm:px-2 sm:py-1 py-[2px] bg-white">

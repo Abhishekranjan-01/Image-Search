@@ -4,7 +4,8 @@ import ContainerButtons from "../ImageContainerButtons/ContainerButtons";
 import Footer from "../Footer/Footer";
 
 export default function ImageContainer() {
-  const { dataFromAPI, setDataFromAPI } = useContext(APIdataProvider);
+  const { dataFromAPI, setDataFromAPI, update, setUpdate } =
+    useContext(APIdataProvider);
 
   const [arrayOfImages, setArrayOfImage] = useState([]);
   const [loadImgs, setLoadImgs] = useState(true);
@@ -25,14 +26,18 @@ export default function ImageContainer() {
   };
 
   useEffect(() => {
-    if (loadImgs) {
+    if (loadImgs || update) {
       let tempArr = [...dataFromAPI.slice(0, 9)];
-
+      if (update == true) {
+        setArrayOfImage([]);
+      }
       setArrayOfImage([...arrayOfImages, ...tempArr]);
       setDataFromAPI(dataFromAPI.slice(9, Infinity));
       setLoadImgs(false);
+      setUpdate(false);
+      console.log("Image Container 1st Instance");
     }
-  }, []);
+  }, [update]);
 
   window.addEventListener("scroll", HandleScrollEvent);
 

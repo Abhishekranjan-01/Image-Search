@@ -29,7 +29,9 @@ export default function ImageContainer() {
     if (loadImgs || update) {
       let tempArr = [...dataFromAPI.slice(0, 9)];
       if (update == true) {
-        setArrayOfImage([]);
+        while (arrayOfImages.length != 0) {
+          arrayOfImages.pop();
+        }
       }
       setArrayOfImage([...arrayOfImages, ...tempArr]);
       setDataFromAPI(dataFromAPI.slice(9, Infinity));
@@ -41,7 +43,9 @@ export default function ImageContainer() {
 
   window.addEventListener("scroll", HandleScrollEvent);
 
-  return (
+  return update ? (
+    <section></section>
+  ) : (
     <main className="sm:w-11/12 pb-12 mx-auto sm:overflow-x-hidden">
       <div className="mt-[40px] columns-1 sm:columns-3 gap-[15px]">
         {arrayOfImages.map((allData, i) => (

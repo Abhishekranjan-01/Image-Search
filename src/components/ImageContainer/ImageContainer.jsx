@@ -32,7 +32,7 @@ export default function ImageContainer() {
         if (document.querySelector("#img_container div")) {
           document.querySelector("#img_container div").innerHTML = "";
         } else {
-          document.querySelector("#img_container div").innerHTML = "";
+          // document.querySelector("#img_container div").innerHTML = "";
         }
       }
       setArrayOfImage([...arrayOfImages, ...tempArr]);
@@ -44,7 +44,9 @@ export default function ImageContainer() {
 
   window.addEventListener("scroll", HandleScrollEvent);
 
-  return (
+  return update && document.querySelector("#img_container div") ? (
+    (document.querySelector("#img_container div").innerHTML = "")
+  ) : (
     <main
       id="img_container"
       className="sm:w-11/12 pb-12 mx-auto sm:overflow-x-hidden"

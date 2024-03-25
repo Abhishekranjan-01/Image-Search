@@ -15,10 +15,8 @@ export default function inputContainer() {
       onSubmit={(e) => {
         e.preventDefault();
         localStorage.removeItem("SEARCH_IMAGE_RESULTS");
-
-        fethImages(inputRef.current.value, setDataFromAPI, dataFromAPI);
-
         setUpdate(true);
+        fethImages(inputRef.current.value, setDataFromAPI, dataFromAPI);
       }}
     >
       <div className="w-full flex rounded-md px-1 sm:px-2 sm:py-1 py-[2px] bg-white">

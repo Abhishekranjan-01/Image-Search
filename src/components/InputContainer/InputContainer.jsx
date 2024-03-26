@@ -15,9 +15,8 @@ export default function inputContainer() {
       onSubmit={(e) => {
         e.preventDefault();
         localStorage.removeItem("SEARCH_IMAGE_RESULTS");
-        if (document.querySelector("#img_container div")) {
-          document.querySelector("#img_container div").innerHTML = "";
-        }
+
+        setDataFromAPI(null);
         setUpdate(true);
         fethImages(inputRef.current.value, setDataFromAPI, dataFromAPI);
       }}

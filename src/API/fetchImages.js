@@ -22,7 +22,7 @@ export default function fethImages(
           JSON.stringify(res.data.photos)
         );
         if (document.querySelector("#img_container div")) {
-          document.querySelector("#img_container div").innerHTML = "";
+          // document.querySelector("#img_container div").innerHTML = "";
         }
         setHoldBgUrlOrsetDataFromApi(res.data.photos);
       } else {

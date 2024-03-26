@@ -30,7 +30,7 @@ export default function ImageContainer() {
       let tempArr = [...dataFromAPI.slice(0, 9)];
       if (update == true) {
         if (document.querySelector("#img_container div")) {
-          document.querySelector("#img_container div").innerHTML = "";
+          // document.querySelector("#img_container div").innerHTML = "";
         } else {
           // document.querySelector("#img_container div").innerHTML = "";
         }

@@ -11,13 +11,11 @@ export default function ImageContainer() {
   const [loadImgs, setLoadImgs] = useState(true);
 
   const HandleScrollEvent = () => {
-    if (
-      Math.abs(
-        document.documentElement.scrollHeight -
-          document.documentElement.clientHeight -
-          document.documentElement.scrollTop
-      ) <= 30
-    ) {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = document.documentElement.clientHeight;
+    const distanceToBottom = scrollHeight - (scrollTop + clientHeight);
+    if (distanceToBottom <= 30) {
       let tempArr = [...dataFromAPI.slice(0, 9)];
 
       setArrayOfImage([...arrayOfImages, ...tempArr]);

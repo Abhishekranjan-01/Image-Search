@@ -16,7 +16,7 @@ export default function ImageContainer() {
         document.documentElement.scrollHeight -
           document.documentElement.clientHeight -
           document.documentElement.scrollTop
-      ) <= 15
+      ) <= 30
     ) {
       let tempArr = [...dataFromAPI.slice(0, 9)];
 

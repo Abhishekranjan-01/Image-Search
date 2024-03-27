@@ -1,6 +1,6 @@
 import axios from "axios";
 import getOrientation from "../Orientation/getOrientation";
-export default function fethImages(
+export default async function fethImages(
   query,
   setHoldBgUrlOrsetDataFromApi = null,
   dataFromAPI = null
@@ -17,13 +17,11 @@ export default function fethImages(
     .then((res) => {
       const random = Math.round(Math.random() * 80 - 1);
       if (dataFromAPI != null) {
+        localStorage.removeItem("DATA_FROM_API_IMAGE_RESULTS");
         localStorage.setItem(
           "DATA_FROM_API_IMAGE_RESULTS",
           JSON.stringify(res.data.photos)
         );
-        if (document.querySelector("#img_container div")) {
-          // document.querySelector("#img_container div").innerHTML = "";
-        }
         setHoldBgUrlOrsetDataFromApi(res.data.photos);
       } else {
         setHoldBgUrlOrsetDataFromApi(

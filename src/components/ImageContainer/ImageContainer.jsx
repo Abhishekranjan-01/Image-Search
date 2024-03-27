@@ -4,18 +4,16 @@ import ContainerButtons from "../ImageContainerButtons/ContainerButtons";
 import Footer from "../Footer/Footer";
 
 export default function ImageContainer() {
-  const { dataFromAPI, setDataFromAPI, update, setUpdate } =
-    useContext(APIdataProvider);
+  const { dataFromAPI, setDataFromAPI } = useContext(APIdataProvider);
 
   const [arrayOfImages, setArrayOfImage] = useState([]);
   const [loadImgs, setLoadImgs] = useState(true);
 
   const HandleScrollEvent = () => {
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const scrollHeight = document.documentElement.scrollHeight;
-    const clientHeight = document.documentElement.clientHeight;
-    const distanceToBottom = scrollHeight - (scrollTop + clientHeight);
-    if (distanceToBottom <= 30) {
+    if (
+      window.innerHeight + document.documentElement.scrollTop + 30 >=
+      document.documentElement.scrollHeight
+    ) {
       let tempArr = [...dataFromAPI.slice(0, 9)];
 
       setArrayOfImage([...arrayOfImages, ...tempArr]);
@@ -24,27 +22,18 @@ export default function ImageContainer() {
   };
 
   useEffect(() => {
-    if (loadImgs || update) {
+    if (loadImgs) {
       let tempArr = [...dataFromAPI.slice(0, 9)];
-      if (update == true) {
-        if (document.querySelector("#img_container div")) {
-          // document.querySelector("#img_container div").innerHTML = "";
-        } else {
-          // document.querySelector("#img_container div").innerHTML = "";
-        }
-      }
+
       setArrayOfImage([...arrayOfImages, ...tempArr]);
       setDataFromAPI(dataFromAPI.slice(9, Infinity));
       setLoadImgs(false);
-      setUpdate(false);
     }
-  }, [update]);
+  }, [dataFromAPI]);
 
   window.addEventListener("scroll", HandleScrollEvent);
 
-  return update && document.querySelector("#img_container div") ? (
-    (document.querySelector("#img_container div").innerHTML = "")
-  ) : (
+  return (
     <main
       id="img_container"
       className="sm:w-11/12 pb-12 mx-auto sm:overflow-x-hidden"

@@ -7,7 +7,7 @@ const APIdataProvider = createContext(null);
 
 function Home() {
   const [dataFromAPI, setDataFromAPI] = useState(false);
-  const [update, setUpdate] = useState(false);
+
   // alert("Wait");
 
   useEffect(() => {
@@ -19,9 +19,7 @@ function Home() {
   }, []);
 
   return (
-    <APIdataProvider.Provider
-      value={{ dataFromAPI, setDataFromAPI, update, setUpdate }}
-    >
+    <APIdataProvider.Provider value={{ dataFromAPI, setDataFromAPI }}>
       <BackgroundContainer />
 
       {dataFromAPI ? <ImageContainer /> : <AuroraBackgroundDemo />}

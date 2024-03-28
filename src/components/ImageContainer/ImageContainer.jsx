@@ -1,4 +1,7 @@
 import { useContext, useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
 import { APIdataProvider } from "../Home/Home";
 import ContainerButtons from "../ImageContainerButtons/ContainerButtons";
 import Footer from "../Footer/Footer";
@@ -44,8 +47,9 @@ export default function ImageContainer() {
             key={allData.id}
             className="relative overflow-hidden mb-[15px] rounded-md shadow-md shadow-gray-600 w-fit max-sm:flex max-sm:flex-col max-sm:items-center"
           >
-            <img
+            <LazyLoadImage
               className="w-full bg-cover max-sm:px-2 sm:rounded-md rounded-sm"
+              effect="blur"
               src={allData.src["original"]}
               alt={allData.alt}
             />

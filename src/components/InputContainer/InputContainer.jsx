@@ -13,9 +13,9 @@ export default function inputContainer() {
       action=""
       onSubmit={async (e) => {
         e.preventDefault();
+        setDataFromAPI(null);
         localStorage.removeItem("DATA_FROM_API_IMAGE_RESULTS");
         await fethImages(inputRef.current.value, setDataFromAPI, dataFromAPI);
-        // setDataFromAPI(null);
       }}
     >
       <div className="w-full flex rounded-md px-1 sm:px-2 sm:py-1 py-[2px] bg-white">

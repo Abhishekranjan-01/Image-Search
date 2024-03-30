@@ -16,13 +16,19 @@ export default async function fethImages(
     )
     .then((res) => {
       const random = Math.round(Math.random() * 80 - 1);
+
       if (dataFromAPI != null) {
+        if (res.data.total_results == 0) {
+          alert("No Result Found !");
+          setHoldBgUrlOrsetDataFromApi(null);
+          return null;
+        }
         localStorage.removeItem("DATA_FROM_API_IMAGE_RESULTS");
         localStorage.setItem(
           "DATA_FROM_API_IMAGE_RESULTS",
           JSON.stringify(res.data.photos)
         );
-        setHoldBgUrlOrsetDataFromApi(null);
+
         setHoldBgUrlOrsetDataFromApi(res.data.photos);
       } else {
         setHoldBgUrlOrsetDataFromApi(

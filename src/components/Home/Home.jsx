@@ -21,7 +21,7 @@ function Home() {
   return (
     <APIdataProvider.Provider value={{ dataFromAPI, setDataFromAPI }}>
       <BackgroundContainer />
-      {console.log("I am Provider:\t", dataFromAPI)}
+
       {dataFromAPI ? <ImageContainer /> : <AuroraBackgroundDemo />}
     </APIdataProvider.Provider>
   );

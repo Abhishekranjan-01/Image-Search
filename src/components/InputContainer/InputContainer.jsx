@@ -11,11 +11,11 @@ export default function inputContainer() {
     <form
       className="block mx-auto w-11/12 sm:w-1/2 shadow-2xl"
       action=""
-      onSubmit={(e) => {
+      onSubmit={async (e) => {
         e.preventDefault();
         localStorage.removeItem("DATA_FROM_API_IMAGE_RESULTS");
-        fethImages(inputRef.current.value, setDataFromAPI, dataFromAPI);
-        setDataFromAPI(null);
+        await fethImages(inputRef.current.value, setDataFromAPI, dataFromAPI);
+        // setDataFromAPI(null);
       }}
     >
       <div className="w-full flex rounded-md px-1 sm:px-2 sm:py-1 py-[2px] bg-white">

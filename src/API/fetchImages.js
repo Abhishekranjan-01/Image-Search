@@ -5,7 +5,7 @@ export default async function fethImages(
   setHoldBgUrlOrsetDataFromApi = null,
   dataFromAPI = null
 ) {
-  axios
+  await axios
     .get(
       `https://api.pexels.com/v1/search/?page=1&per_page=80&orientation=${getOrientation()}&query=${query}`,
       {
@@ -22,6 +22,7 @@ export default async function fethImages(
           "DATA_FROM_API_IMAGE_RESULTS",
           JSON.stringify(res.data.photos)
         );
+        setHoldBgUrlOrsetDataFromApi(null);
         setHoldBgUrlOrsetDataFromApi(res.data.photos);
       } else {
         setHoldBgUrlOrsetDataFromApi(

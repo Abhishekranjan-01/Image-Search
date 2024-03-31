@@ -10,7 +10,7 @@ export default function backgroundContainer() {
     const query = "Nature";
 
     if (!HoldBgUrl) {
-      fethImages(query, setHoldBgUrl);
+      fethImages(query, setHoldBgUrl, false);
     }
   }, []);
 

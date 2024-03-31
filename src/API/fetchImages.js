@@ -15,7 +15,6 @@ export default async function fethImages(
       }
     )
     .then((res) => {
-      console.log(res);
       if (res.data.total_results <= 1) {
         alert("No Result Found !");
         return null;

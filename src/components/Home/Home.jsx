@@ -6,7 +6,7 @@ import AuroraBackgroundDemo from "../Background/BackgroundAurora";
 const APIdataProvider = createContext(null);
 
 function Home() {
-  const [dataFromAPI, setDataFromAPI] = useState(false);
+  const [dataFromAPI, setDataFromAPI] = useState(null);
 
   // alert("Wait");
 

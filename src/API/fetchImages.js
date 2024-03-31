@@ -3,9 +3,9 @@ import getOrientation from "../Orientation/getOrientation";
 export default async function fethImages(
   query,
   setHoldBgUrlOrsetDataFromApi = null,
-  dataFromAPI = null
+  dataFromAPI = false
 ) {
-  await axios
+  axios
     .get(
       `https://api.pexels.com/v1/search/?page=1&per_page=80&orientation=${getOrientation()}&query=${query}`,
       {
@@ -15,22 +15,19 @@ export default async function fethImages(
       }
     )
     .then((res) => {
-      const random = Math.round(Math.random() * 80 - 1);
-
-      if (dataFromAPI != null) {
-        if (res.data.total_results == 0) {
-          alert("No Result Found !");
-          setHoldBgUrlOrsetDataFromApi(null);
-          return null;
-        }
-        localStorage.removeItem("DATA_FROM_API_IMAGE_RESULTS");
+      console.log(res);
+      if (res.data.total_results <= 1) {
+        alert("No Result Found !");
+        return null;
+      }
+      if (dataFromAPI != false) {
+        setHoldBgUrlOrsetDataFromApi(res.data.photos);
         localStorage.setItem(
           "DATA_FROM_API_IMAGE_RESULTS",
           JSON.stringify(res.data.photos)
         );
-
-        setHoldBgUrlOrsetDataFromApi(res.data.photos);
       } else {
+        const random = Math.round(Math.random() * 80 - 1);
         setHoldBgUrlOrsetDataFromApi(
           `url(${res.data.photos[random].src[getOrientation()]})`
         );
@@ -38,6 +35,6 @@ export default async function fethImages(
     })
     .catch((err) => {
       console.log(err);
-      alert(err);
+      // alert(err);
     });
 }

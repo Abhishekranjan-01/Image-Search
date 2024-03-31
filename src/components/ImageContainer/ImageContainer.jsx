@@ -18,7 +18,7 @@ export default function ImageContainer() {
       document.documentElement.scrollHeight
     ) {
       let tempArr = [...dataFromAPI.slice(0, 9)];
-
+      console.log("DFAPI:\t", dataFromAPI);
       setArrayOfImage([...arrayOfImages, ...tempArr]);
       setDataFromAPI(dataFromAPI.slice(9, Infinity));
     }
@@ -35,30 +35,39 @@ export default function ImageContainer() {
   }, [dataFromAPI]);
 
   window.addEventListener("scroll", HandleScrollEvent);
-
+  console.log("AOI:\t", arrayOfImages);
+  console.log("DFAPI:\t", dataFromAPI);
   return (
-    <main
-      id="img_container"
-      className="sm:w-11/12 pb-12 mx-auto sm:overflow-x-hidden"
-    >
-      <div className="mt-[40px] columns-1 sm:columns-3 gap-[15px]">
-        {arrayOfImages.map((allData, i) => (
-          <div
-            key={allData.id}
-            className="relative overflow-hidden mb-[15px] rounded-md shadow-md shadow-gray-600 w-fit max-sm:flex max-sm:flex-col max-sm:items-center"
-          >
-            <LazyLoadImage
-              className="w-full bg-cover max-sm:px-2 sm:rounded-md rounded-sm"
-              effect="blur"
-              src={allData.src["original"]}
-              alt={allData.alt}
-            />
+    arrayOfImages[0]?.id && (
+      <main
+        id="img_container"
+        className="sm:w-11/12 pb-12 mx-auto sm:overflow-x-hidden"
+      >
+        <div className="mt-[40px] columns-1 sm:columns-3 gap-[15px]">
+          {console.log(arrayOfImages)}
+          {console.log("isUndefined:\t", arrayOfImages[0]?.id == undefined)}
+          {arrayOfImages[0]?.id !== undefined
+            ? arrayOfImages.map((allData, i) => (
+                <div
+                  key={allData.id}
+                  className="relative overflow-hidden mb-[15px] rounded-md shadow-md shadow-gray-600 w-fit max-sm:flex max-sm:flex-col max-sm:items-center"
+                >
+                  {console.log(arrayOfImages)}
+                  {console.log(allData.src["original"])}
+                  <LazyLoadImage
+                    className="w-full bg-cover max-sm:px-2 sm:rounded-md rounded-sm"
+                    effect="blur"
+                    src={allData.src["original"]}
+                    alt={allData.alt}
+                  />
 
-            <ContainerButtons allData={allData} />
-          </div>
-        ))}
-      </div>
-      <Footer />
-    </main>
+                  <ContainerButtons allData={allData} />
+                </div>
+              ))
+            : ""}
+        </div>
+        <Footer />
+      </main>
+    )
   );
 }
